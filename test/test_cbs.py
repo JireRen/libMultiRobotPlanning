@@ -5,7 +5,7 @@ import os
 
 class TestCBS(unittest.TestCase):
 
-  def runCBS(self, inputFile, createVideo=False):
+  def runCBS(self, inputFile, createVideo=True):
     subprocess.run(
       ["./cbs",
        "-i", inputFile,
