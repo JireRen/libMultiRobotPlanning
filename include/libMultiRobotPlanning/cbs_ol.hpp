@@ -1,0 +1,14 @@
+//
+// Created by jire on 2/17/20.
+//
+
+#ifndef LIBMULTIROBOTPLANNING_CBS_OL_HPP
+#define LIBMULTIROBOTPLANNING_CBS_OL_HPP
+
+
+class cbs_ol {
+
+};
+
+
+#endif //LIBMULTIROBOTPLANNING_CBS_OL_HPP

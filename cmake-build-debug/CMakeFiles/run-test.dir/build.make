@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/jire/clion-2019.2.5/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/jire/clion-2019.3.3/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/jire/clion-2019.2.5/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/jire/clion-2019.3.3/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jire/libMultiRobotPlanning
+CMAKE_SOURCE_DIR = /home/jire/clion-project/libMultiRobotPlanning
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jire/libMultiRobotPlanning/cmake-build-debug
+CMAKE_BINARY_DIR = /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug
 
 # Utility rule file for run-test.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/jire/libMultiRobotPlanning/cmake-build-debug
 include CMakeFiles/run-test.dir/progress.make
 
 CMakeFiles/run-test:
-	python3 -m unittest discover -s /home/jire/libMultiRobotPlanning/test
+	python3 -m unittest discover -s /home/jire/clion-project/libMultiRobotPlanning/test
 
 run-test: CMakeFiles/run-test
 run-test: CMakeFiles/run-test.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/run-test.dir/clean:
 .PHONY : CMakeFiles/run-test.dir/clean
 
 CMakeFiles/run-test.dir/depend:
-	cd /home/jire/libMultiRobotPlanning/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jire/libMultiRobotPlanning /home/jire/libMultiRobotPlanning /home/jire/libMultiRobotPlanning/cmake-build-debug /home/jire/libMultiRobotPlanning/cmake-build-debug /home/jire/libMultiRobotPlanning/cmake-build-debug/CMakeFiles/run-test.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jire/clion-project/libMultiRobotPlanning /home/jire/clion-project/libMultiRobotPlanning /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles/run-test.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/run-test.dir/depend
 

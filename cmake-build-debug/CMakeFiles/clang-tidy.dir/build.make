@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/jire/clion-2019.2.5/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/jire/clion-2019.3.3/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/jire/clion-2019.2.5/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/jire/clion-2019.3.3/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jire/libMultiRobotPlanning
+CMAKE_SOURCE_DIR = /home/jire/clion-project/libMultiRobotPlanning
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jire/libMultiRobotPlanning/cmake-build-debug
+CMAKE_BINARY_DIR = /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug
 
 # Utility rule file for clang-tidy.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/jire/libMultiRobotPlanning/cmake-build-debug
 include CMakeFiles/clang-tidy.dir/progress.make
 
 CMakeFiles/clang-tidy:
-	CMAKE_EXPORT_COMPILE_COMMANDS=ON run-clang-tidy /home/jire/libMultiRobotPlanning
+	CMAKE_EXPORT_COMPILE_COMMANDS=ON run-clang-tidy /home/jire/clion-project/libMultiRobotPlanning
 
 clang-tidy: CMakeFiles/clang-tidy
 clang-tidy: CMakeFiles/clang-tidy.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/clang-tidy.dir/clean:
 .PHONY : CMakeFiles/clang-tidy.dir/clean
 
 CMakeFiles/clang-tidy.dir/depend:
-	cd /home/jire/libMultiRobotPlanning/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jire/libMultiRobotPlanning /home/jire/libMultiRobotPlanning /home/jire/libMultiRobotPlanning/cmake-build-debug /home/jire/libMultiRobotPlanning/cmake-build-debug /home/jire/libMultiRobotPlanning/cmake-build-debug/CMakeFiles/clang-tidy.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jire/clion-project/libMultiRobotPlanning /home/jire/clion-project/libMultiRobotPlanning /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles/clang-tidy.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/clang-tidy.dir/depend
 

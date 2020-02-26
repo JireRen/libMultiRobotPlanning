@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/libMultiRobotPlanning/online_testcase.hpp
+
+/home/jire/clion-project/libMultiRobotPlanning/example/online_testcase.cpp
+iostream
+-
+fstream
+-
+yaml-cpp/yaml.h
+-
+boost/program_options.hpp
+-
+libMultiRobotPlanning/online_testcase.hpp
+/home/jire/clion-project/libMultiRobotPlanning/example/libMultiRobotPlanning/online_testcase.hpp
+

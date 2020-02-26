@@ -6,5 +6,5 @@ CXX_FLAGS =  -Wall -Wextra -g   -std=c++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/jire/libMultiRobotPlanning/include 
+CXX_INCLUDES = -I/home/jire/clion-project/libMultiRobotPlanning/include 
 

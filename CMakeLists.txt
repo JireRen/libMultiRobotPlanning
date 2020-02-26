@@ -45,6 +45,12 @@ set(ALL_SOURCE_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/include/libMultiRobotPlanning/next_best_assignment.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/libMultiRobotPlanning/planresult.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/libMultiRobotPlanning/sipp.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/libMultiRobotPlanning/online_testcase.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/example/online_testcase.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/libMultiRobotPlanning/hie_mapf.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/example/hie_mapf.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/example/cbs_ol.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/libMultiRobotPlanning/cbs_ol.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/example/a_star.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/example/a_star_epsilon.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/example/assignment.cpp
@@ -174,3 +180,27 @@ target_link_libraries(mapf_prioritized_sipp
   ${Boost_LIBRARIES}
   yaml-cpp
 )
+
+## online_testcase
+add_executable(online_testcase
+        example/online_testcase.cpp)
+target_link_libraries(online_testcase
+        yaml-cpp
+        ${Boost_LIBRARIES}
+        )
+
+## cbs_ol
+add_executable(cbs_ol
+        example/cbs_ol.cpp)
+target_link_libraries(cbs_ol
+        yaml-cpp
+        ${Boost_LIBRARIES}
+        )
+
+## hie_mapf
+add_executable(hie_mapf
+        example/hie_mapf.cpp)
+target_link_libraries(hie_mapf
+        yaml-cpp
+        ${Boost_LIBRARIES}
+        )

@@ -87,8 +87,8 @@ class Animation:
 
     self.anim = animation.FuncAnimation(self.fig, self.animate_func,
                                init_func=self.init_func,
-                               # frames=int(self.T+1) * 10,
-                               frames=1,
+                               frames=int(self.T+1) * 10,
+                               # frames=1,
                                interval=100,
                                blit=True)
     # self.ax2 = self.fig.add_subplot(122, aspect='equal')

@@ -39,38 +39,27 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/jire/clion-2019.2.5/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/jire/clion-2019.3.3/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/jire/clion-2019.2.5/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/jire/clion-2019.3.3/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jire/libMultiRobotPlanning
+CMAKE_SOURCE_DIR = /home/jire/clion-project/libMultiRobotPlanning
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jire/libMultiRobotPlanning/cmake-build-debug
+CMAKE_BINARY_DIR = /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/jire/clion-2019.2.5/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/jire/clion-2019.2.5/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/jire/clion-2019.3.3/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -78,11 +67,22 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/home/jire/clion-2019.3.3/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jire/libMultiRobotPlanning/cmake-build-debug/CMakeFiles /home/jire/libMultiRobotPlanning/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jire/libMultiRobotPlanning/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,134 +111,43 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named sipp
+# Target rules for targets named a_star
 
 # Build rule for target.
-sipp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sipp
-.PHONY : sipp
+a_star: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 a_star
+.PHONY : a_star
 
 # fast build rule for target.
-sipp/fast:
-	$(MAKE) -f CMakeFiles/sipp.dir/build.make CMakeFiles/sipp.dir/build
-.PHONY : sipp/fast
+a_star/fast:
+	$(MAKE) -f CMakeFiles/a_star.dir/build.make CMakeFiles/a_star.dir/build
+.PHONY : a_star/fast
 
 #=============================================================================
-# Target rules for targets named next_best_assignment
+# Target rules for targets named hie_mapf
 
 # Build rule for target.
-next_best_assignment: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 next_best_assignment
-.PHONY : next_best_assignment
+hie_mapf: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hie_mapf
+.PHONY : hie_mapf
 
 # fast build rule for target.
-next_best_assignment/fast:
-	$(MAKE) -f CMakeFiles/next_best_assignment.dir/build.make CMakeFiles/next_best_assignment.dir/build
-.PHONY : next_best_assignment/fast
+hie_mapf/fast:
+	$(MAKE) -f CMakeFiles/hie_mapf.dir/build.make CMakeFiles/hie_mapf.dir/build
+.PHONY : hie_mapf/fast
 
 #=============================================================================
-# Target rules for targets named cbs_ta
+# Target rules for targets named everything
 
 # Build rule for target.
-cbs_ta: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cbs_ta
-.PHONY : cbs_ta
+everything: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 everything
+.PHONY : everything
 
 # fast build rule for target.
-cbs_ta/fast:
-	$(MAKE) -f CMakeFiles/cbs_ta.dir/build.make CMakeFiles/cbs_ta.dir/build
-.PHONY : cbs_ta/fast
-
-#=============================================================================
-# Target rules for targets named ecbs_ta
-
-# Build rule for target.
-ecbs_ta: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ecbs_ta
-.PHONY : ecbs_ta
-
-# fast build rule for target.
-ecbs_ta/fast:
-	$(MAKE) -f CMakeFiles/ecbs_ta.dir/build.make CMakeFiles/ecbs_ta.dir/build
-.PHONY : ecbs_ta/fast
-
-#=============================================================================
-# Target rules for targets named ecbs
-
-# Build rule for target.
-ecbs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ecbs
-.PHONY : ecbs
-
-# fast build rule for target.
-ecbs/fast:
-	$(MAKE) -f CMakeFiles/ecbs.dir/build.make CMakeFiles/ecbs.dir/build
-.PHONY : ecbs/fast
-
-#=============================================================================
-# Target rules for targets named cbs
-
-# Build rule for target.
-cbs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cbs
-.PHONY : cbs
-
-# fast build rule for target.
-cbs/fast:
-	$(MAKE) -f CMakeFiles/cbs.dir/build.make CMakeFiles/cbs.dir/build
-.PHONY : cbs/fast
-
-#=============================================================================
-# Target rules for targets named mapf_prioritized_sipp
-
-# Build rule for target.
-mapf_prioritized_sipp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mapf_prioritized_sipp
-.PHONY : mapf_prioritized_sipp
-
-# fast build rule for target.
-mapf_prioritized_sipp/fast:
-	$(MAKE) -f CMakeFiles/mapf_prioritized_sipp.dir/build.make CMakeFiles/mapf_prioritized_sipp.dir/build
-.PHONY : mapf_prioritized_sipp/fast
-
-#=============================================================================
-# Target rules for targets named clang-format
-
-# Build rule for target.
-clang-format: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 clang-format
-.PHONY : clang-format
-
-# fast build rule for target.
-clang-format/fast:
-	$(MAKE) -f CMakeFiles/clang-format.dir/build.make CMakeFiles/clang-format.dir/build
-.PHONY : clang-format/fast
-
-#=============================================================================
-# Target rules for targets named a_star_epsilon
-
-# Build rule for target.
-a_star_epsilon: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 a_star_epsilon
-.PHONY : a_star_epsilon
-
-# fast build rule for target.
-a_star_epsilon/fast:
-	$(MAKE) -f CMakeFiles/a_star_epsilon.dir/build.make CMakeFiles/a_star_epsilon.dir/build
-.PHONY : a_star_epsilon/fast
-
-#=============================================================================
-# Target rules for targets named clang-tidy
-
-# Build rule for target.
-clang-tidy: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 clang-tidy
-.PHONY : clang-tidy
-
-# fast build rule for target.
-clang-tidy/fast:
-	$(MAKE) -f CMakeFiles/clang-tidy.dir/build.make CMakeFiles/clang-tidy.dir/build
-.PHONY : clang-tidy/fast
+everything/fast:
+	$(MAKE) -f CMakeFiles/everything.dir/build.make CMakeFiles/everything.dir/build
+.PHONY : everything/fast
 
 #=============================================================================
 # Target rules for targets named assignment
@@ -267,30 +176,160 @@ run-test/fast:
 .PHONY : run-test/fast
 
 #=============================================================================
-# Target rules for targets named everything
+# Target rules for targets named clang-tidy
 
 # Build rule for target.
-everything: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 everything
-.PHONY : everything
+clang-tidy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 clang-tidy
+.PHONY : clang-tidy
 
 # fast build rule for target.
-everything/fast:
-	$(MAKE) -f CMakeFiles/everything.dir/build.make CMakeFiles/everything.dir/build
-.PHONY : everything/fast
+clang-tidy/fast:
+	$(MAKE) -f CMakeFiles/clang-tidy.dir/build.make CMakeFiles/clang-tidy.dir/build
+.PHONY : clang-tidy/fast
 
 #=============================================================================
-# Target rules for targets named a_star
+# Target rules for targets named a_star_epsilon
 
 # Build rule for target.
-a_star: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 a_star
-.PHONY : a_star
+a_star_epsilon: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 a_star_epsilon
+.PHONY : a_star_epsilon
 
 # fast build rule for target.
-a_star/fast:
-	$(MAKE) -f CMakeFiles/a_star.dir/build.make CMakeFiles/a_star.dir/build
-.PHONY : a_star/fast
+a_star_epsilon/fast:
+	$(MAKE) -f CMakeFiles/a_star_epsilon.dir/build.make CMakeFiles/a_star_epsilon.dir/build
+.PHONY : a_star_epsilon/fast
+
+#=============================================================================
+# Target rules for targets named clang-format
+
+# Build rule for target.
+clang-format: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 clang-format
+.PHONY : clang-format
+
+# fast build rule for target.
+clang-format/fast:
+	$(MAKE) -f CMakeFiles/clang-format.dir/build.make CMakeFiles/clang-format.dir/build
+.PHONY : clang-format/fast
+
+#=============================================================================
+# Target rules for targets named mapf_prioritized_sipp
+
+# Build rule for target.
+mapf_prioritized_sipp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mapf_prioritized_sipp
+.PHONY : mapf_prioritized_sipp
+
+# fast build rule for target.
+mapf_prioritized_sipp/fast:
+	$(MAKE) -f CMakeFiles/mapf_prioritized_sipp.dir/build.make CMakeFiles/mapf_prioritized_sipp.dir/build
+.PHONY : mapf_prioritized_sipp/fast
+
+#=============================================================================
+# Target rules for targets named cbs
+
+# Build rule for target.
+cbs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cbs
+.PHONY : cbs
+
+# fast build rule for target.
+cbs/fast:
+	$(MAKE) -f CMakeFiles/cbs.dir/build.make CMakeFiles/cbs.dir/build
+.PHONY : cbs/fast
+
+#=============================================================================
+# Target rules for targets named ecbs
+
+# Build rule for target.
+ecbs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ecbs
+.PHONY : ecbs
+
+# fast build rule for target.
+ecbs/fast:
+	$(MAKE) -f CMakeFiles/ecbs.dir/build.make CMakeFiles/ecbs.dir/build
+.PHONY : ecbs/fast
+
+#=============================================================================
+# Target rules for targets named ecbs_ta
+
+# Build rule for target.
+ecbs_ta: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ecbs_ta
+.PHONY : ecbs_ta
+
+# fast build rule for target.
+ecbs_ta/fast:
+	$(MAKE) -f CMakeFiles/ecbs_ta.dir/build.make CMakeFiles/ecbs_ta.dir/build
+.PHONY : ecbs_ta/fast
+
+#=============================================================================
+# Target rules for targets named cbs_ta
+
+# Build rule for target.
+cbs_ta: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cbs_ta
+.PHONY : cbs_ta
+
+# fast build rule for target.
+cbs_ta/fast:
+	$(MAKE) -f CMakeFiles/cbs_ta.dir/build.make CMakeFiles/cbs_ta.dir/build
+.PHONY : cbs_ta/fast
+
+#=============================================================================
+# Target rules for targets named next_best_assignment
+
+# Build rule for target.
+next_best_assignment: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 next_best_assignment
+.PHONY : next_best_assignment
+
+# fast build rule for target.
+next_best_assignment/fast:
+	$(MAKE) -f CMakeFiles/next_best_assignment.dir/build.make CMakeFiles/next_best_assignment.dir/build
+.PHONY : next_best_assignment/fast
+
+#=============================================================================
+# Target rules for targets named sipp
+
+# Build rule for target.
+sipp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sipp
+.PHONY : sipp
+
+# fast build rule for target.
+sipp/fast:
+	$(MAKE) -f CMakeFiles/sipp.dir/build.make CMakeFiles/sipp.dir/build
+.PHONY : sipp/fast
+
+#=============================================================================
+# Target rules for targets named online_testcase
+
+# Build rule for target.
+online_testcase: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 online_testcase
+.PHONY : online_testcase
+
+# fast build rule for target.
+online_testcase/fast:
+	$(MAKE) -f CMakeFiles/online_testcase.dir/build.make CMakeFiles/online_testcase.dir/build
+.PHONY : online_testcase/fast
+
+#=============================================================================
+# Target rules for targets named cbs_ol
+
+# Build rule for target.
+cbs_ol: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cbs_ol
+.PHONY : cbs_ol
+
+# fast build rule for target.
+cbs_ol/fast:
+	$(MAKE) -f CMakeFiles/cbs_ol.dir/build.make CMakeFiles/cbs_ol.dir/build
+.PHONY : cbs_ol/fast
 
 example/a_star.o: example/a_star.cpp.o
 
@@ -400,6 +439,33 @@ example/cbs.cpp.s:
 	$(MAKE) -f CMakeFiles/cbs.dir/build.make CMakeFiles/cbs.dir/example/cbs.cpp.s
 .PHONY : example/cbs.cpp.s
 
+example/cbs_ol.o: example/cbs_ol.cpp.o
+
+.PHONY : example/cbs_ol.o
+
+# target to build an object file
+example/cbs_ol.cpp.o:
+	$(MAKE) -f CMakeFiles/cbs_ol.dir/build.make CMakeFiles/cbs_ol.dir/example/cbs_ol.cpp.o
+.PHONY : example/cbs_ol.cpp.o
+
+example/cbs_ol.i: example/cbs_ol.cpp.i
+
+.PHONY : example/cbs_ol.i
+
+# target to preprocess a source file
+example/cbs_ol.cpp.i:
+	$(MAKE) -f CMakeFiles/cbs_ol.dir/build.make CMakeFiles/cbs_ol.dir/example/cbs_ol.cpp.i
+.PHONY : example/cbs_ol.cpp.i
+
+example/cbs_ol.s: example/cbs_ol.cpp.s
+
+.PHONY : example/cbs_ol.s
+
+# target to generate assembly for a file
+example/cbs_ol.cpp.s:
+	$(MAKE) -f CMakeFiles/cbs_ol.dir/build.make CMakeFiles/cbs_ol.dir/example/cbs_ol.cpp.s
+.PHONY : example/cbs_ol.cpp.s
+
 example/cbs_ta.o: example/cbs_ta.cpp.o
 
 .PHONY : example/cbs_ta.o
@@ -481,6 +547,33 @@ example/ecbs_ta.cpp.s:
 	$(MAKE) -f CMakeFiles/ecbs_ta.dir/build.make CMakeFiles/ecbs_ta.dir/example/ecbs_ta.cpp.s
 .PHONY : example/ecbs_ta.cpp.s
 
+example/hie_mapf.o: example/hie_mapf.cpp.o
+
+.PHONY : example/hie_mapf.o
+
+# target to build an object file
+example/hie_mapf.cpp.o:
+	$(MAKE) -f CMakeFiles/hie_mapf.dir/build.make CMakeFiles/hie_mapf.dir/example/hie_mapf.cpp.o
+.PHONY : example/hie_mapf.cpp.o
+
+example/hie_mapf.i: example/hie_mapf.cpp.i
+
+.PHONY : example/hie_mapf.i
+
+# target to preprocess a source file
+example/hie_mapf.cpp.i:
+	$(MAKE) -f CMakeFiles/hie_mapf.dir/build.make CMakeFiles/hie_mapf.dir/example/hie_mapf.cpp.i
+.PHONY : example/hie_mapf.cpp.i
+
+example/hie_mapf.s: example/hie_mapf.cpp.s
+
+.PHONY : example/hie_mapf.s
+
+# target to generate assembly for a file
+example/hie_mapf.cpp.s:
+	$(MAKE) -f CMakeFiles/hie_mapf.dir/build.make CMakeFiles/hie_mapf.dir/example/hie_mapf.cpp.s
+.PHONY : example/hie_mapf.cpp.s
+
 example/mapf_prioritized_sipp.o: example/mapf_prioritized_sipp.cpp.o
 
 .PHONY : example/mapf_prioritized_sipp.o
@@ -535,6 +628,33 @@ example/next_best_assignment.cpp.s:
 	$(MAKE) -f CMakeFiles/next_best_assignment.dir/build.make CMakeFiles/next_best_assignment.dir/example/next_best_assignment.cpp.s
 .PHONY : example/next_best_assignment.cpp.s
 
+example/online_testcase.o: example/online_testcase.cpp.o
+
+.PHONY : example/online_testcase.o
+
+# target to build an object file
+example/online_testcase.cpp.o:
+	$(MAKE) -f CMakeFiles/online_testcase.dir/build.make CMakeFiles/online_testcase.dir/example/online_testcase.cpp.o
+.PHONY : example/online_testcase.cpp.o
+
+example/online_testcase.i: example/online_testcase.cpp.i
+
+.PHONY : example/online_testcase.i
+
+# target to preprocess a source file
+example/online_testcase.cpp.i:
+	$(MAKE) -f CMakeFiles/online_testcase.dir/build.make CMakeFiles/online_testcase.dir/example/online_testcase.cpp.i
+.PHONY : example/online_testcase.cpp.i
+
+example/online_testcase.s: example/online_testcase.cpp.s
+
+.PHONY : example/online_testcase.s
+
+# target to generate assembly for a file
+example/online_testcase.cpp.s:
+	$(MAKE) -f CMakeFiles/online_testcase.dir/build.make CMakeFiles/online_testcase.dir/example/online_testcase.cpp.s
+.PHONY : example/online_testcase.cpp.s
+
 example/sipp.o: example/sipp.cpp.o
 
 .PHONY : example/sipp.o
@@ -568,22 +688,25 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... sipp"
-	@echo "... next_best_assignment"
-	@echo "... cbs_ta"
-	@echo "... ecbs_ta"
-	@echo "... ecbs"
-	@echo "... cbs"
-	@echo "... edit_cache"
-	@echo "... mapf_prioritized_sipp"
-	@echo "... clang-format"
-	@echo "... a_star_epsilon"
-	@echo "... rebuild_cache"
-	@echo "... clang-tidy"
+	@echo "... a_star"
+	@echo "... hie_mapf"
+	@echo "... everything"
 	@echo "... assignment"
 	@echo "... run-test"
-	@echo "... everything"
-	@echo "... a_star"
+	@echo "... clang-tidy"
+	@echo "... a_star_epsilon"
+	@echo "... clang-format"
+	@echo "... rebuild_cache"
+	@echo "... mapf_prioritized_sipp"
+	@echo "... cbs"
+	@echo "... edit_cache"
+	@echo "... ecbs"
+	@echo "... ecbs_ta"
+	@echo "... cbs_ta"
+	@echo "... next_best_assignment"
+	@echo "... sipp"
+	@echo "... online_testcase"
+	@echo "... cbs_ol"
 	@echo "... example/a_star.o"
 	@echo "... example/a_star.i"
 	@echo "... example/a_star.s"
@@ -596,6 +719,9 @@ help:
 	@echo "... example/cbs.o"
 	@echo "... example/cbs.i"
 	@echo "... example/cbs.s"
+	@echo "... example/cbs_ol.o"
+	@echo "... example/cbs_ol.i"
+	@echo "... example/cbs_ol.s"
 	@echo "... example/cbs_ta.o"
 	@echo "... example/cbs_ta.i"
 	@echo "... example/cbs_ta.s"
@@ -605,12 +731,18 @@ help:
 	@echo "... example/ecbs_ta.o"
 	@echo "... example/ecbs_ta.i"
 	@echo "... example/ecbs_ta.s"
+	@echo "... example/hie_mapf.o"
+	@echo "... example/hie_mapf.i"
+	@echo "... example/hie_mapf.s"
 	@echo "... example/mapf_prioritized_sipp.o"
 	@echo "... example/mapf_prioritized_sipp.i"
 	@echo "... example/mapf_prioritized_sipp.s"
 	@echo "... example/next_best_assignment.o"
 	@echo "... example/next_best_assignment.i"
 	@echo "... example/next_best_assignment.s"
+	@echo "... example/online_testcase.o"
+	@echo "... example/online_testcase.i"
+	@echo "... example/online_testcase.s"
 	@echo "... example/sipp.o"
 	@echo "... example/sipp.i"
 	@echo "... example/sipp.s"
