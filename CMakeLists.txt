@@ -64,6 +64,9 @@ set(ALL_SOURCE_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/example/shortest_path_heuristic.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/example/sipp.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/example/timer.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/example/a_star_seq.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/example/hie_mapf_barebone.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/libMultiRobotPlanning/hie_mapf_barebone.hpp
 )
 
 add_custom_target(clang-format
@@ -201,6 +204,24 @@ target_link_libraries(cbs_ol
 add_executable(hie_mapf
         example/hie_mapf.cpp)
 target_link_libraries(hie_mapf
+        yaml-cpp
+        ${Boost_LIBRARIES}
+        )
+
+## a_star_seq
+add_executable(a_star_seq
+        example/a_star_seq.cpp)
+
+target_link_libraries(a_star_seq
+        yaml-cpp
+        ${Boost_LIBRARIES}
+)
+
+## hie_mapf_barebone
+add_executable(hie_mapf_barebone
+        example/hie_mapf_barebone.cpp)
+
+target_link_libraries(hie_mapf_barebone
         yaml-cpp
         ${Boost_LIBRARIES}
         )

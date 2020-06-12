@@ -1,0 +1,124 @@
+agents:
+-   goal: [77, 195]
+    name: agent0
+    start: [75, 193]
+-   goal: [126, 194]
+    name: agent1
+    start: [126, 193]
+-   goal: [8, 38]
+    name: agent2
+    start: [8, 36]
+-   goal: [251, 163]
+    name: agent3
+    start: [253, 163]
+-   goal: [169, 76]
+    name: agent4
+    start: [170, 79]
+-   goal: [157, 193]
+    name: agent5
+    start: [157, 191]
+-   goal: [140, 181]
+    name: agent6
+    start: [142, 179]
+-   goal: [54, 137]
+    name: agent7
+    start: [52, 136]
+-   goal: [107, 36]
+    name: agent8
+    start: [106, 37]
+-   goal: [105, 205]
+    name: agent9
+    start: [108, 204]
+-   goal: [145, 51]
+    name: agent10
+    start: [150, 51]
+-   goal: [183, 62]
+    name: agent11
+    start: [185, 66]
+-   goal: [185, 132]
+    name: agent12
+    start: [186, 128]
+-   goal: [139, 95]
+    name: agent13
+    start: [143, 93]
+-   goal: [76, 213]
+    name: agent14
+    start: [77, 209]
+-   goal: [163, 168]
+    name: agent15
+    start: [161, 174]
+-   goal: [138, 90]
+    name: agent16
+    start: [144, 91]
+-   goal: [62, 53]
+    name: agent17
+    start: [61, 59]
+-   goal: [147, 81]
+    name: agent18
+    start: [154, 79]
+-   goal: [139, 220]
+    name: agent19
+    start: [142, 226]
+-   goal: [132, 142]
+    name: agent20
+    start: [142, 144]
+-   goal: [92, 198]
+    name: agent21
+    start: [100, 201]
+-   goal: [167, 75]
+    name: agent22
+    start: [174, 84]
+-   goal: [27, 33]
+    name: agent23
+    start: [17, 34]
+-   goal: [176, 94]
+    name: agent24
+    start: [181, 86]
+-   goal: [93, 79]
+    name: agent25
+    start: [101, 84]
+-   goal: [198, 98]
+    name: agent26
+    start: [196, 108]
+-   goal: [117, 227]
+    name: agent27
+    start: [126, 230]
+-   goal: [234, 149]
+    name: agent28
+    start: [227, 157]
+-   goal: [206, 163]
+    name: agent29
+    start: [215, 167]
+-   goal: [209, 154]
+    name: agent30
+    start: [211, 166]
+-   goal: [88, 72]
+    name: agent31
+    start: [98, 78]
+-   goal: [154, 79]
+    name: agent32
+    start: [167, 84]
+-   goal: [118, 229]
+    name: agent33
+    start: [132, 227]
+-   goal: [235, 119]
+    name: agent34
+    start: [220, 119]
+-   goal: [72, 85]
+    name: agent35
+    start: [70, 100]
+-   goal: [156, 141]
+    name: agent36
+    start: [164, 131]
+-   goal: [119, 52]
+    name: agent37
+    start: [130, 59]
+-   goal: [73, 41]
+    name: agent38
+    start: [63, 48]
+-   goal: [74, 32]
+    name: agent39
+    start: [81, 44]
+map:
+    dimensions: [257, 261]
+    obstacles:

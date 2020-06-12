@@ -1,1 +1,1 @@
-/usr/bin/c++   -Wall -Wextra -g   CMakeFiles/hie_mapf.dir/example/hie_mapf.cpp.o  -o hie_mapf -lyaml-cpp /usr/lib/x86_64-linux-gnu/libboost_program_options.so 
+/usr/bin/c++   -Wall -Wextra -g   CMakeFiles/hie_mapf.dir/example/hie_mapf.cpp.o  -o hie_mapf  -lyaml-cpp /usr/lib/x86_64-linux-gnu/libboost_program_options.so 

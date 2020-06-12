@@ -3,7 +3,6 @@
 
 CMakeFiles/hie_mapf.dir/example/hie_mapf.cpp.o
  ../include/libMultiRobotPlanning/a_star.hpp
- ../include/libMultiRobotPlanning/cbs.hpp
  ../include/libMultiRobotPlanning/hie_mapf.hpp
  ../include/libMultiRobotPlanning/neighbor.hpp
  ../include/libMultiRobotPlanning/planresult.hpp

@@ -17,8 +17,8 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="a_star">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/a_star" prefix_auto="0" extension_auto="0"/>
+			<Target title="hie_mapf_barebone">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/hie_mapf_barebone" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -35,14 +35,14 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 a_star"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 hie_mapf_barebone"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="a_star/fast">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/a_star" prefix_auto="0" extension_auto="0"/>
+			<Target title="hie_mapf_barebone/fast">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/hie_mapf_barebone" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -59,7 +59,65 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 a_star/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 hie_mapf_barebone/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="a_star_seq">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/a_star_seq" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 a_star_seq"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="a_star_seq/fast">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/a_star_seq" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 a_star_seq/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -113,152 +171,6 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="everything">
-				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 everything"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="assignment">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/assignment" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 assignment"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="assignment/fast">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/assignment" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 assignment/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="run-test">
-				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 run-test"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="clang-tidy">
-				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clang-tidy"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="a_star_epsilon">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/a_star_epsilon" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 a_star_epsilon"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="a_star_epsilon/fast">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/a_star_epsilon" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 a_star_epsilon/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="clang-format">
-				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clang-format"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="mapf_prioritized_sipp">
 				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/mapf_prioritized_sipp" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
@@ -302,6 +214,208 @@
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 mapf_prioritized_sipp/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sipp">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/sipp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 sipp"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sipp/fast">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/sipp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 sipp/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ecbs_ta">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/ecbs_ta" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 ecbs_ta"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ecbs_ta/fast">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/ecbs_ta" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 ecbs_ta/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="run-test">
+				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 run-test"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cbs_ol">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/cbs_ol" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 cbs_ol"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cbs_ol/fast">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/cbs_ol" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 cbs_ol/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="next_best_assignment">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/next_best_assignment" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 next_best_assignment"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="next_best_assignment/fast">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/next_best_assignment" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 next_best_assignment/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -365,56 +479,28 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="ecbs">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/ecbs" prefix_auto="0" extension_auto="0"/>
+			<Target title="everything">
 				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
+				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 ecbs"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 everything"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="ecbs/fast">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/ecbs" prefix_auto="0" extension_auto="0"/>
+			<Target title="clang-format">
 				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
+				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 ecbs/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clang-format"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="ecbs_ta">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/ecbs_ta" prefix_auto="0" extension_auto="0"/>
+			<Target title="a_star">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/a_star" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -431,14 +517,14 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 ecbs_ta"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 a_star"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="ecbs_ta/fast">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/ecbs_ta" prefix_auto="0" extension_auto="0"/>
+			<Target title="a_star/fast">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/a_star" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -455,7 +541,7 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 ecbs_ta/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 a_star/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -509,8 +595,8 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="next_best_assignment">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/next_best_assignment" prefix_auto="0" extension_auto="0"/>
+			<Target title="a_star_epsilon">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/a_star_epsilon" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -527,14 +613,14 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 next_best_assignment"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 a_star_epsilon"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="next_best_assignment/fast">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/next_best_assignment" prefix_auto="0" extension_auto="0"/>
+			<Target title="a_star_epsilon/fast">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/a_star_epsilon" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -551,14 +637,14 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 next_best_assignment/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 a_star_epsilon/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="sipp">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/sipp" prefix_auto="0" extension_auto="0"/>
+			<Target title="assignment">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/assignment" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -575,14 +661,14 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 sipp"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 assignment"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="sipp/fast">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/sipp" prefix_auto="0" extension_auto="0"/>
+			<Target title="assignment/fast">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/assignment" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -599,7 +685,7 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 sipp/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 assignment/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -653,32 +739,18 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="cbs_ol">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/cbs_ol" prefix_auto="0" extension_auto="0"/>
+			<Target title="clang-tidy">
 				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
+				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 cbs_ol"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clang-tidy"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="cbs_ol/fast">
-				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/cbs_ol" prefix_auto="0" extension_auto="0"/>
+			<Target title="ecbs">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/ecbs" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -695,7 +767,31 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 cbs_ol/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 ecbs"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ecbs/fast">
+				<Option output="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/ecbs" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jire/clion-project/libMultiRobotPlanning/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 ecbs/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -707,6 +803,9 @@
 		</Unit>
 		<Unit filename="/home/jire/clion-project/libMultiRobotPlanning/example/a_star_epsilon.cpp">
 			<Option target="a_star_epsilon"/>
+		</Unit>
+		<Unit filename="/home/jire/clion-project/libMultiRobotPlanning/example/a_star_seq.cpp">
+			<Option target="a_star_seq"/>
 		</Unit>
 		<Unit filename="/home/jire/clion-project/libMultiRobotPlanning/example/assignment.cpp">
 			<Option target="assignment"/>
@@ -728,6 +827,9 @@
 		</Unit>
 		<Unit filename="/home/jire/clion-project/libMultiRobotPlanning/example/hie_mapf.cpp">
 			<Option target="hie_mapf"/>
+		</Unit>
+		<Unit filename="/home/jire/clion-project/libMultiRobotPlanning/example/hie_mapf_barebone.cpp">
+			<Option target="hie_mapf_barebone"/>
 		</Unit>
 		<Unit filename="/home/jire/clion-project/libMultiRobotPlanning/example/mapf_prioritized_sipp.cpp">
 			<Option target="mapf_prioritized_sipp"/>

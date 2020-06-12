@@ -20,13 +20,11 @@ neighbor.hpp
 planresult.hpp
 ../include/libMultiRobotPlanning/planresult.hpp
 
-../include/libMultiRobotPlanning/cbs.hpp
+../include/libMultiRobotPlanning/hie_mapf.hpp
 map
 -
 a_star.hpp
 ../include/libMultiRobotPlanning/a_star.hpp
-
-../include/libMultiRobotPlanning/hie_mapf.hpp
 
 ../include/libMultiRobotPlanning/neighbor.hpp
 
@@ -35,8 +33,6 @@ vector
 -
 
 /home/jire/clion-project/libMultiRobotPlanning/example/hie_mapf.cpp
-libMultiRobotPlanning/hie_mapf.hpp
-/home/jire/clion-project/libMultiRobotPlanning/example/libMultiRobotPlanning/hie_mapf.hpp
 fstream
 -
 iostream
@@ -47,10 +43,10 @@ boost/program_options.hpp
 -
 yaml-cpp/yaml.h
 -
-libMultiRobotPlanning/cbs.hpp
--
 timer.hpp
 /home/jire/clion-project/libMultiRobotPlanning/example/timer.hpp
+libMultiRobotPlanning/hie_mapf.hpp
+/home/jire/clion-project/libMultiRobotPlanning/example/libMultiRobotPlanning/hie_mapf.hpp
 
 /home/jire/clion-project/libMultiRobotPlanning/example/timer.hpp
 chrono

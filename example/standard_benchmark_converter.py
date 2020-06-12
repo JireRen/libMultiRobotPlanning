@@ -28,7 +28,7 @@ def convert_nums(l):
     return l
 
 
-def load_map_file(map_file, occupied_char={'@', 'T', 'O'}, valid_chars={'@', '.', 'T', 'G', 'O', 'S', 'W'}):
+def load_map_file(map_file, occupied_char={"@", "T", "O"}, valid_chars={'@', '.', 'T', 'G', 'O', 'S', 'W'}):
     if not os.path.isfile(map_file):
         print("Map file not found!")
         exit(-1)
@@ -40,10 +40,12 @@ def load_map_file(map_file, occupied_char={'@', 'T', 'O'}, valid_chars={'@', '.'
     occupancy_lst = set()
     assert(len(map_ls) == height)
     for y, l in enumerate(map_ls):
-        assert(len(l) == width)
+        # assert(len(l) == width)
+        # print(l)
         for x, c in enumerate(l):
-            assert(c in valid_chars)
-            if c == occupied_char:
+            # assert(c in valid_chars)
+            print(c)
+            if c in occupied_char:
                 occupancy_lst.add((x, y))
     return width, height, occupancy_lst
 
@@ -101,7 +103,7 @@ def dump_yaml(instances, map_width, map_height, occupancy_list, filename):
     f.write("    dimensions: {}\n".format([map_width, map_height]))
     f.write("    obstacles:\n")
     for o in occupancy_list:
-        f.write("    - !!python/tuple {}\n".format(list(o)))
+        f.write("    - {}\n".format(list(o)))
     f.close()
 
 
@@ -115,6 +117,7 @@ instances = load_scenario_file(args.scenario,
                                map_width,
                                map_height)
 print("Scenario loaded")
+print(occupancy_list)
 generate_sliced_problems(instances,
                          map_width,
                          map_height,

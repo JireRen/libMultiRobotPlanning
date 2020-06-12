@@ -1,4 +1,3 @@
-#include "libMultiRobotPlanning/hie_mapf.hpp"
 #include <fstream>
 #include <iostream>
 
@@ -6,11 +5,10 @@
 #include <boost/program_options.hpp>
 
 #include <yaml-cpp/yaml.h>
-
-#include <libMultiRobotPlanning/cbs.hpp>
 #include "timer.hpp"
+#include "libMultiRobotPlanning/hie_mapf.hpp"
 
-using libMultiRobotPlanning::CBS;
+using libMultiRobotPlanning::HieMAPF;
 using libMultiRobotPlanning::Neighbor;
 using libMultiRobotPlanning::PlanResult;
 
@@ -41,7 +39,7 @@ namespace std {
             boost::hash_combine(seed, s.time);
             boost::hash_combine(seed, s.x);
             boost::hash_combine(seed, s.y);
-            return seed;
+          return seed;
         }
     };
 }  // namespace std
@@ -244,11 +242,55 @@ namespace std {
     };
 }  // namespace std
 
+struct Highway{
+    Highway(int fromx, int fromy, int tox, int toy) : fromx(fromx), fromy(fromy),
+    tox(tox), toy(toy){}
+
+    int fromx;
+    int fromy;
+    int tox;
+    int toy;
+};
+
+struct HighwayHeuristic{
+    HighwayHeuristic(int dimx, int dimy) :
+        data(std::vector<std::vector<int> >(dimy, std::vector<int>(dimx, 10000))){}
+
+    friend std::ostream& operator<<(std::ostream& os, const HighwayHeuristic& highway) {
+        for (size_t i = 0; i != highway.data.size(); ++i) {
+            for (size_t j = highway.data.size() - 1; j != size_t(-1); --j) {
+                os << highway.data[i][j] << " ";
+            }
+            os << std::endl;
+        }
+        return os;
+    }
+    HighwayHeuristic& operator=(const HighwayHeuristic& other) = default;
+    std::vector<std::vector<int> > data;
+};
+
+struct BellmanVertex{
+    BellmanVertex(int x, int y) : x(x), y(y){}
+    int x;
+    int y;
+};
+
+struct BellmanEdge{
+    BellmanEdge(int fromx, int fromy, int tox, int toy, int weight) : fromx(fromx), fromy(fromy),
+    tox(tox), toy(toy), weight(weight){}
+
+    int fromx;
+    int fromy;
+    int tox;
+    int toy;
+    int weight;
+};
+
 ///
 class Environment {
 public:
     Environment(size_t dimx, size_t dimy, std::unordered_set<Location> obstacles,
-                std::vector<Location> goals)
+                std::vector<Location> goals, std::vector<Highway> highways)
             : m_dimx(dimx),
               m_dimy(dimy),
               m_obstacles(std::move(obstacles)),
@@ -257,12 +299,87 @@ public:
               m_constraints(nullptr),
               m_lastGoalConstraint(-1),
               m_highLevelExpanded(0),
-              m_lowLevelExpanded(0) {
+              m_lowLevelExpanded(0),
+              m_highways(std::move(highways)),
+              m_omega(2)
+              {
         // computeHeuristic();
+        for (size_t i = 0; i != m_goals.size(); ++i){
+            m_highwayHeuristicTable.emplace_back(m_dimx, m_dimy);
+        }
+
+        // generate graph
+        for (int i = 0; i != m_dimy; ++i) {
+            for (int j = 0; j != m_dimx; ++j) {
+                m_vertices.emplace_back(i, j);
+                if (bellmanValidEdge(i, j + 1)) {
+                    if (bellmanIsHighway(i, j, i, j + 1)) {
+                        m_edges.emplace_back(i, j, i, j + 1, 1);
+                    } else { m_edges.emplace_back(i, j, i, j + 1, m_omega); }
+                }
+                if (bellmanValidEdge(i, j - 1)) {
+                    if (bellmanIsHighway(i, j, i, j - 1)) {
+                        m_edges.emplace_back(i, j, i, j - 1, 1);
+                    } else { m_edges.emplace_back(i, j, i, j - 1, m_omega); }
+                }
+                if (bellmanValidEdge(i + 1, j)) {
+                    if (bellmanIsHighway(i + 1, j, i, j)) {
+                        m_edges.emplace_back(i + 1, j, i, j, 1);
+                    } else { m_edges.emplace_back(i + 1, j, i, j, m_omega); }
+                }
+                if (bellmanValidEdge(i - 1, j)) {
+                    if (bellmanIsHighway(i - 1, j, i, j)) {
+                        m_edges.emplace_back(i - 1, j, i, j, 1);
+                    } else { m_edges.emplace_back(i - 1, j, i, j, m_omega); }
+                }
+            }
+        }
+
+        int src_x;
+        int src_y;
+        // Bellman-Ford algorithm generating the heuristicTable for each goal
+        for (size_t agentIdx = 0; agentIdx != m_goals.size(); ++agentIdx){
+            src_x = m_goals[agentIdx].x;
+            src_y = m_goals[agentIdx].y;
+            m_highwayHeuristicTable[agentIdx].data[src_x][src_y] = 0;
+            for (size_t i = 0; i != m_vertices.size(); ++i){
+                for (size_t e = 0; e != m_edges.size(); ++e){
+                    if (m_highwayHeuristicTable[agentIdx].data[m_edges[e].tox][m_edges[e].toy]
+                    + m_edges[e].weight < m_highwayHeuristicTable[agentIdx].data[m_edges[e].fromx][m_edges[e].fromy]){
+                        m_highwayHeuristicTable[agentIdx].data[m_edges[e].fromx][m_edges[e].fromy]
+                        = m_edges[e].weight + m_highwayHeuristicTable[agentIdx].data[m_edges[e].tox][m_edges[e].toy];
+                    }
+                }
+            }
+        }
+
+        for (size_t i = 0; i != m_highwayHeuristicTable.size(); ++i){
+            std::cout << "The generated heuristic graph is:" << std::endl;
+            std::cout << m_highwayHeuristicTable[i];
+        }
     }
 
     Environment(const Environment&) = delete;
     Environment& operator=(const Environment&) = delete;
+
+    // bellmanFord check if this edge is valid
+    bool bellmanValidEdge(int x, int y){ return (x > -1) && (y > -1) && (x < m_dimy) && (y < m_dimx);};
+
+    // bellmanFord check if on the highway
+    bool bellmanIsHighway(int fromx, int fromy, int tox, int toy){
+        for (size_t i = 0; i != m_highways.size(); ++i){
+            if (m_highways[i].fromx == fromx && m_highways[i].fromy == fromy &&
+            m_highways[i].tox == tox && m_highways[i].toy == toy)
+                return true;
+        }
+        return false;
+    }
+
+    // convert coordinate to Idx
+    int rowToIdx(int x, int y){ return x*m_dimy + y;}
+
+    // convert idx to coordinate
+    std::vector<int> idxToRow(int idx){ return std::vector<int>{int(idx / m_dimy), idx % m_dimy};}
 
     void setLowLevelContext(size_t agentIdx, const Constraints* constraints) {
         assert(constraints);  // NOLINT
@@ -276,12 +393,21 @@ public:
         }
     }
 
+//    int admissibleHeuristic(const State& s) {
+//        // std::cout << "H: " <<  s << " " << m_heuristic[m_agentIdx][s.x + m_dimx *
+//        // s.y] << std::endl;
+//        // return m_heuristic[m_agentIdx][s.x + m_dimx * s.y];
+//        return std::abs(s.x - m_goals[m_agentIdx].x) +
+//               std::abs(s.y - m_goals[m_agentIdx].y);
+//    }
     int admissibleHeuristic(const State& s) {
         // std::cout << "H: " <<  s << " " << m_heuristic[m_agentIdx][s.x + m_dimx *
         // s.y] << std::endl;
         // return m_heuristic[m_agentIdx][s.x + m_dimx * s.y];
-        return std::abs(s.x - m_goals[m_agentIdx].x) +
-               std::abs(s.y - m_goals[m_agentIdx].y);
+//        return std::abs(s.x - m_goals[m_agentIdx].x) +
+//               std::abs(s.y - m_goals[m_agentIdx].y);
+        // std::cout << "current heuristic is: " << m_highwayHeuristicTable[m_agentIdx].data[s.x][s.y] << std::endl;
+        return m_highwayHeuristicTable[m_agentIdx].data[s.x][s.y];
     }
 
     bool isSolution(const State& s) {
@@ -455,6 +581,11 @@ private:
     int m_lastGoalConstraint;
     int m_highLevelExpanded;
     int m_lowLevelExpanded;
+    std::vector<HighwayHeuristic> m_highwayHeuristicTable;
+    std::vector<Highway> m_highways;
+    int m_omega;
+    std::vector<BellmanVertex> m_vertices;
+    std::vector<BellmanEdge> m_edges;
 };
 
 //**********************************************************************
@@ -493,12 +624,12 @@ void agentCluster(const std::vector<Location>& goals, const std::vector<State>& 
                                goals[i].x, goals[i].y, dimx, dimy, seg);
 
         if (region_id){
-            local_agents[region_id - 1].goals.push_back(Location(goals[i].x, goals[i].y));
-            local_agents[region_id - 1].startStates.push_back(State(0, startStates[i].x, startStates[i].y));
+            local_agents[region_id - 1].goals.emplace_back(goals[i].x, goals[i].y);
+            local_agents[region_id - 1].startStates.emplace_back(0, startStates[i].x, startStates[i].y);
         }
         else{
-            global_agents.startStates.push_back(State(0, startStates[i].x, startStates[i].y));
-            global_agents.goals.push_back(Location(goals[i].x, goals[i].y));
+            global_agents.startStates.emplace_back(0, startStates[i].x, startStates[i].y);
+            global_agents.goals.emplace_back(goals[i].x, goals[i].y);
         }
     }
 }
@@ -535,6 +666,8 @@ int main(int argc, char* argv[]) {
     std::unordered_set<Location> obstacles;
     std::vector<Location> goals;
     std::vector<State> startStates;
+    // hwy goes here
+    std::vector<Highway> highways;
 
     const auto& dim = config["map"]["dimensions"];
     int dimx = dim[0].as<int>();
@@ -552,7 +685,13 @@ int main(int argc, char* argv[]) {
         goals.emplace_back(Location(goal[0].as<int>(), goal[1].as<int>()));
     }
 
-    int seg = 1;
+    // create highway from file
+    for (const auto& node : config["highways"]){
+        highways.emplace_back(Highway(node[0].as<int>(), node[1].as<int>(),
+                node[2].as<int>(), node[3].as<int>()));
+    }
+
+    int seg = 2;
     std::vector<LocalAgent> local_agents;
     for (int i = 0; i != seg * seg; ++i) local_agents.emplace_back(LocalAgent(i));
 
@@ -560,6 +699,53 @@ int main(int argc, char* argv[]) {
     agentCluster(goals, startStates, local_agents, global_agents, dimx, dimy, seg);
 
     std::cout << "Agent segmentation done!" << std::endl;
-    
+
+    std::ofstream out(outputFile);
+/*    // Test the robot clustering algo
+//    if (true){
+//        int counter(0);
+//        out << "global:" << std::endl;
+//        for (size_t i = 0; i != global_agents.goals.size(); ++i){
+//            out << "  agent" << counter++ << ":" << std::endl;
+//            out << "    - startx: " << global_agents.startStates[i].x << std::endl;
+//            out << "      starty: " << global_agents.startStates[i].y << std::endl;
+//            out << "      goalx: " << global_agents.goals[i].x << std::endl;
+//            out << "      goaly: " << global_agents.goals[i].y << std::endl;
+//        }
+//        out << "local:" << std::endl;
+//
+//        for (size_t j = 0; j != size_t(seg * seg); ++j){
+//            for (size_t i = 0; i != local_agents[j].goals.size(); ++i) {
+//                out << "  agent" << counter++ << ":" << std::endl;
+//                out << "    - startx: " << local_agents[j].startStates[i].x << std::endl;
+//                out << "      starty: " << local_agents[j].startStates[i].y << std::endl;
+//                out << "      goalx: " << local_agents[j].goals[i].x << std::endl;
+//                out << "      goaly: " << local_agents[j].goals[i].y << std::endl;
+//            }
+//        }
+//    }
+*/
+    Environment global_map(dimx, dimy, obstacles, goals, highways);
+    std::cout << "The size of the goals is: " << goals.size() << std::endl;
+    HieMAPF<State, Action, int, Conflict, Constraints, Environment> global_cbs(global_map);
+    std::vector<PlanResult<State, Action, int>> global_path;
+
+    bool global_success = global_cbs.search(startStates, global_path);
+
+    if (global_success) {
+        std::cout << "Global Planning Successful! " <<std::endl;
+
+        out << "schedule:" << std::endl;
+        for (size_t a = 0; a != global_path.size(); ++a){
+            out << "  agent" << a << ":" <<std::endl;
+            for (const auto& state : global_path[a].states){
+                out << "   - x: " << state.first.x << std::endl
+                    << "     y: " << state.first.y << std::endl
+                    << "     t: " << state.second << std::endl;
+            }
+        }
+    }
+    else std::cout << "Global Planning NOT successful!" << std::endl;
     return 0;
+    //../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex1.yaml
 }

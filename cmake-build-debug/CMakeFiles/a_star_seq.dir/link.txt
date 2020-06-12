@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Wextra -g   CMakeFiles/a_star_seq.dir/example/a_star_seq.cpp.o  -o a_star_seq  -lyaml-cpp /usr/lib/x86_64-linux-gnu/libboost_program_options.so 

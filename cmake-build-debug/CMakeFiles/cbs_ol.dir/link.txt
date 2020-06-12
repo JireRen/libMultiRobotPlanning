@@ -1,1 +1,1 @@
-/usr/bin/c++   -Wall -Wextra -g   CMakeFiles/cbs_ol.dir/example/cbs_ol.cpp.o  -o cbs_ol -lyaml-cpp /usr/lib/x86_64-linux-gnu/libboost_program_options.so 
+/usr/bin/c++   -Wall -Wextra -g   CMakeFiles/cbs_ol.dir/example/cbs_ol.cpp.o  -o cbs_ol  -lyaml-cpp /usr/lib/x86_64-linux-gnu/libboost_program_options.so 
