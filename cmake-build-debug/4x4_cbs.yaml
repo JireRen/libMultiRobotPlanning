@@ -1,0 +1,42 @@
+statistics:
+  cost: 9
+  makespan: 5
+  runtime: 0.00143226
+  highLevelExpanded: 7
+  lowLevelExpanded: 83
+schedule:
+  agent0:
+    - x: 0
+      y: 2
+      t: 0
+    - x: 1
+      y: 2
+      t: 1
+    - x: 1
+      y: 1
+      t: 2
+    - x: 1
+      y: 1
+      t: 3
+    - x: 2
+      y: 1
+      t: 4
+    - x: 3
+      y: 1
+      t: 5
+  agent1:
+    - x: 1
+      y: 3
+      t: 0
+    - x: 2
+      y: 3
+      t: 1
+    - x: 2
+      y: 2
+      t: 2
+    - x: 2
+      y: 1
+      t: 3
+    - x: 2
+      y: 0
+      t: 4

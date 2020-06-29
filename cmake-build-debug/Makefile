@@ -319,6 +319,19 @@ assignment/fast:
 .PHONY : assignment/fast
 
 #=============================================================================
+# Target rules for targets named highway_test
+
+# Build rule for target.
+highway_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 highway_test
+.PHONY : highway_test
+
+# fast build rule for target.
+highway_test/fast:
+	$(MAKE) -f CMakeFiles/highway_test.dir/build.make CMakeFiles/highway_test.dir/build
+.PHONY : highway_test/fast
+
+#=============================================================================
 # Target rules for targets named online_testcase
 
 # Build rule for target.
@@ -654,6 +667,33 @@ example/hie_mapf_barebone.cpp.s:
 	$(MAKE) -f CMakeFiles/hie_mapf_barebone.dir/build.make CMakeFiles/hie_mapf_barebone.dir/example/hie_mapf_barebone.cpp.s
 .PHONY : example/hie_mapf_barebone.cpp.s
 
+example/highway_test.o: example/highway_test.cpp.o
+
+.PHONY : example/highway_test.o
+
+# target to build an object file
+example/highway_test.cpp.o:
+	$(MAKE) -f CMakeFiles/highway_test.dir/build.make CMakeFiles/highway_test.dir/example/highway_test.cpp.o
+.PHONY : example/highway_test.cpp.o
+
+example/highway_test.i: example/highway_test.cpp.i
+
+.PHONY : example/highway_test.i
+
+# target to preprocess a source file
+example/highway_test.cpp.i:
+	$(MAKE) -f CMakeFiles/highway_test.dir/build.make CMakeFiles/highway_test.dir/example/highway_test.cpp.i
+.PHONY : example/highway_test.cpp.i
+
+example/highway_test.s: example/highway_test.cpp.s
+
+.PHONY : example/highway_test.s
+
+# target to generate assembly for a file
+example/highway_test.cpp.s:
+	$(MAKE) -f CMakeFiles/highway_test.dir/build.make CMakeFiles/highway_test.dir/example/highway_test.cpp.s
+.PHONY : example/highway_test.cpp.s
+
 example/mapf_prioritized_sipp.o: example/mapf_prioritized_sipp.cpp.o
 
 .PHONY : example/mapf_prioritized_sipp.o
@@ -786,6 +826,7 @@ help:
 	@echo "... cbs_ta"
 	@echo "... a_star_epsilon"
 	@echo "... assignment"
+	@echo "... highway_test"
 	@echo "... online_testcase"
 	@echo "... clang-tidy"
 	@echo "... ecbs"
@@ -822,6 +863,9 @@ help:
 	@echo "... example/hie_mapf_barebone.o"
 	@echo "... example/hie_mapf_barebone.i"
 	@echo "... example/hie_mapf_barebone.s"
+	@echo "... example/highway_test.o"
+	@echo "... example/highway_test.i"
+	@echo "... example/highway_test.s"
 	@echo "... example/mapf_prioritized_sipp.o"
 	@echo "... example/mapf_prioritized_sipp.i"
 	@echo "... example/mapf_prioritized_sipp.s"

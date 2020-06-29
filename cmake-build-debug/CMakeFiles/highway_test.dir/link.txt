@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Wextra -g   CMakeFiles/highway_test.dir/example/highway_test.cpp.o  -o highway_test  -lyaml-cpp /usr/lib/x86_64-linux-gnu/libboost_program_options.so 

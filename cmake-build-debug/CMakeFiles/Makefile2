@@ -66,6 +66,7 @@ all: CMakeFiles/a_star.dir/all
 all: CMakeFiles/cbs_ta.dir/all
 all: CMakeFiles/a_star_epsilon.dir/all
 all: CMakeFiles/assignment.dir/all
+all: CMakeFiles/highway_test.dir/all
 all: CMakeFiles/online_testcase.dir/all
 all: CMakeFiles/ecbs.dir/all
 
@@ -93,6 +94,7 @@ clean: CMakeFiles/a_star.dir/clean
 clean: CMakeFiles/cbs_ta.dir/clean
 clean: CMakeFiles/a_star_epsilon.dir/clean
 clean: CMakeFiles/assignment.dir/clean
+clean: CMakeFiles/highway_test.dir/clean
 clean: CMakeFiles/online_testcase.dir/clean
 clean: CMakeFiles/clang-tidy.dir/clean
 clean: CMakeFiles/ecbs.dir/clean
@@ -187,7 +189,7 @@ CMakeFiles/hie_mapf.dir/clean:
 CMakeFiles/mapf_prioritized_sipp.dir/all:
 	$(MAKE) -f CMakeFiles/mapf_prioritized_sipp.dir/build.make CMakeFiles/mapf_prioritized_sipp.dir/depend
 	$(MAKE) -f CMakeFiles/mapf_prioritized_sipp.dir/build.make CMakeFiles/mapf_prioritized_sipp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles --progress-num=23,24 "Built target mapf_prioritized_sipp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles --progress-num=25,26 "Built target mapf_prioritized_sipp"
 .PHONY : CMakeFiles/mapf_prioritized_sipp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -214,7 +216,7 @@ CMakeFiles/mapf_prioritized_sipp.dir/clean:
 CMakeFiles/sipp.dir/all:
 	$(MAKE) -f CMakeFiles/sipp.dir/build.make CMakeFiles/sipp.dir/depend
 	$(MAKE) -f CMakeFiles/sipp.dir/build.make CMakeFiles/sipp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles --progress-num=29,30 "Built target sipp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles --progress-num=31,32 "Built target sipp"
 .PHONY : CMakeFiles/sipp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -322,7 +324,7 @@ CMakeFiles/cbs_ol.dir/clean:
 CMakeFiles/next_best_assignment.dir/all:
 	$(MAKE) -f CMakeFiles/next_best_assignment.dir/build.make CMakeFiles/next_best_assignment.dir/depend
 	$(MAKE) -f CMakeFiles/next_best_assignment.dir/build.make CMakeFiles/next_best_assignment.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles --progress-num=25,26 "Built target next_best_assignment"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles --progress-num=27,28 "Built target next_best_assignment"
 .PHONY : CMakeFiles/next_best_assignment.dir/all
 
 # Build rule for subdir invocation for target.
@@ -373,9 +375,9 @@ CMakeFiles/cbs.dir/clean:
 # Target rules for target CMakeFiles/everything.dir
 
 # All Build rule for target.
+CMakeFiles/everything.dir/all: CMakeFiles/run-test.dir/all
 CMakeFiles/everything.dir/all: CMakeFiles/clang-format.dir/all
 CMakeFiles/everything.dir/all: CMakeFiles/clang-tidy.dir/all
-CMakeFiles/everything.dir/all: CMakeFiles/run-test.dir/all
 	$(MAKE) -f CMakeFiles/everything.dir/build.make CMakeFiles/everything.dir/depend
 	$(MAKE) -f CMakeFiles/everything.dir/build.make CMakeFiles/everything.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles --progress-num= "Built target everything"
@@ -534,13 +536,40 @@ CMakeFiles/assignment.dir/clean:
 .PHONY : CMakeFiles/assignment.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/highway_test.dir
+
+# All Build rule for target.
+CMakeFiles/highway_test.dir/all:
+	$(MAKE) -f CMakeFiles/highway_test.dir/build.make CMakeFiles/highway_test.dir/depend
+	$(MAKE) -f CMakeFiles/highway_test.dir/build.make CMakeFiles/highway_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles --progress-num=23,24 "Built target highway_test"
+.PHONY : CMakeFiles/highway_test.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/highway_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/highway_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/highway_test.dir/rule
+
+# Convenience name for target.
+highway_test: CMakeFiles/highway_test.dir/rule
+
+.PHONY : highway_test
+
+# clean rule for target.
+CMakeFiles/highway_test.dir/clean:
+	$(MAKE) -f CMakeFiles/highway_test.dir/build.make CMakeFiles/highway_test.dir/clean
+.PHONY : CMakeFiles/highway_test.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/online_testcase.dir
 
 # All Build rule for target.
 CMakeFiles/online_testcase.dir/all:
 	$(MAKE) -f CMakeFiles/online_testcase.dir/build.make CMakeFiles/online_testcase.dir/depend
 	$(MAKE) -f CMakeFiles/online_testcase.dir/build.make CMakeFiles/online_testcase.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles --progress-num=27,28 "Built target online_testcase"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug/CMakeFiles --progress-num=29,30 "Built target online_testcase"
 .PHONY : CMakeFiles/online_testcase.dir/all
 
 # Build rule for subdir invocation for target.

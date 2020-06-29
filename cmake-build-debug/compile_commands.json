@@ -66,6 +66,11 @@
 },
 {
   "directory": "/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug",
+  "command": "/usr/bin/c++   -I/home/jire/clion-project/libMultiRobotPlanning/include   -Wall -Wextra -g   -std=c++14 -o CMakeFiles/highway_test.dir/example/highway_test.cpp.o -c /home/jire/clion-project/libMultiRobotPlanning/example/highway_test.cpp",
+  "file": "/home/jire/clion-project/libMultiRobotPlanning/example/highway_test.cpp"
+},
+{
+  "directory": "/home/jire/clion-project/libMultiRobotPlanning/cmake-build-debug",
   "command": "/usr/bin/c++   -I/home/jire/clion-project/libMultiRobotPlanning/include   -Wall -Wextra -g   -std=c++14 -o CMakeFiles/online_testcase.dir/example/online_testcase.cpp.o -c /home/jire/clion-project/libMultiRobotPlanning/example/online_testcase.cpp",
   "file": "/home/jire/clion-project/libMultiRobotPlanning/example/online_testcase.cpp"
 },

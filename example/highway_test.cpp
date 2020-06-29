@@ -1,0 +1,914 @@
+//
+// Created by jire on 6/17/20.
+// Test program to see how the hard coded hwy will affect the MAPF/CBS results
+//
+#include <fstream>
+#include <iostream>
+
+#include <boost/functional/hash.hpp>
+#include <boost/program_options.hpp>
+
+#include <yaml-cpp/yaml.h>
+
+#include "timer.hpp"
+#include "libMultiRobotPlanning/highway_test.hpp"
+#include <limits>
+using libMultiRobotPlanning::CBS;
+using libMultiRobotPlanning::Neighbor;
+using libMultiRobotPlanning::PlanResult;
+
+struct State {
+  State(int time, int x, int y) : time(time), x(x), y(y) {}
+
+  bool operator==(const State& s) const {
+    return time == s.time && x == s.x && y == s.y;
+  }
+
+  bool equalExceptTime(const State& s) const { return x == s.x && y == s.y; }
+
+  friend std::ostream& operator<<(std::ostream& os, const State& s) {
+    return os << s.time << ": (" << s.x << "," << s.y << ")";
+    // return os << "(" << s.x << "," << s.y << ")";
+  }
+
+  int time;
+  int x;
+  int y;
+};
+
+namespace std {
+template <>
+struct hash<State> {
+  size_t operator()(const State& s) const {
+    size_t seed = 0;
+    boost::hash_combine(seed, s.time);
+    boost::hash_combine(seed, s.x);
+    boost::hash_combine(seed, s.y);
+    return seed;
+  }
+};
+}  // namespace std
+
+///
+enum class Action {
+  Up,
+  Down,
+  Left,
+  Right,
+  Wait,
+};
+
+std::ostream& operator<<(std::ostream& os, const Action& a) {
+  switch (a) {
+    case Action::Up:
+      os << "Up";
+      break;
+    case Action::Down:
+      os << "Down";
+      break;
+    case Action::Left:
+      os << "Left";
+      break;
+    case Action::Right:
+      os << "Right";
+      break;
+    case Action::Wait:
+      os << "Wait";
+      break;
+  }
+  return os;
+}
+
+///
+
+struct Conflict {
+  enum Type {
+    Vertex,
+    Edge,
+  };
+
+  int time;
+  size_t agent1;
+  size_t agent2;
+  Type type;
+
+  int x1;
+  int y1;
+  int x2;
+  int y2;
+
+  friend std::ostream& operator<<(std::ostream& os, const Conflict& c) {
+    switch (c.type) {
+      case Vertex:
+        return os << c.time << ": Vertex(" << c.x1 << "," << c.y1 << ")";
+      case Edge:
+        return os << c.time << ": Edge(" << c.x1 << "," << c.y1 << "," << c.x2
+                  << "," << c.y2 << ")";
+    }
+    return os;
+  }
+};
+
+struct VertexConstraint {
+  VertexConstraint(int time, int x, int y) : time(time), x(x), y(y) {}
+  int time;
+  int x;
+  int y;
+
+  bool operator<(const VertexConstraint& other) const {
+    return std::tie(time, x, y) < std::tie(other.time, other.x, other.y);
+  }
+
+  bool operator==(const VertexConstraint& other) const {
+    return std::tie(time, x, y) == std::tie(other.time, other.x, other.y);
+  }
+
+  friend std::ostream& operator<<(std::ostream& os, const VertexConstraint& c) {
+    return os << "VC(" << c.time << "," << c.x << "," << c.y << ")";
+  }
+};
+
+namespace std {
+template <>
+struct hash<VertexConstraint> {
+  size_t operator()(const VertexConstraint& s) const {
+    size_t seed = 0;
+    boost::hash_combine(seed, s.time);
+    boost::hash_combine(seed, s.x);
+    boost::hash_combine(seed, s.y);
+    return seed;
+  }
+};
+}  // namespace std
+
+struct EdgeConstraint {
+  EdgeConstraint(int time, int x1, int y1, int x2, int y2)
+      : time(time), x1(x1), y1(y1), x2(x2), y2(y2) {}
+  int time;
+  int x1;
+  int y1;
+  int x2;
+  int y2;
+
+  bool operator<(const EdgeConstraint& other) const {
+    return std::tie(time, x1, y1, x2, y2) <
+           std::tie(other.time, other.x1, other.y1, other.x2, other.y2);
+  }
+
+  bool operator==(const EdgeConstraint& other) const {
+    return std::tie(time, x1, y1, x2, y2) ==
+           std::tie(other.time, other.x1, other.y1, other.x2, other.y2);
+  }
+
+  friend std::ostream& operator<<(std::ostream& os, const EdgeConstraint& c) {
+    return os << "EC(" << c.time << "," << c.x1 << "," << c.y1 << "," << c.x2
+              << "," << c.y2 << ")";
+  }
+};
+
+namespace std {
+template <>
+struct hash<EdgeConstraint> {
+  size_t operator()(const EdgeConstraint& s) const {
+    size_t seed = 0;
+    boost::hash_combine(seed, s.time);
+    boost::hash_combine(seed, s.x1);
+    boost::hash_combine(seed, s.y1);
+    boost::hash_combine(seed, s.x2);
+    boost::hash_combine(seed, s.y2);
+    return seed;
+  }
+};
+}  // namespace std
+
+struct Constraints {
+  std::unordered_set<VertexConstraint> vertexConstraints;
+  std::unordered_set<EdgeConstraint> edgeConstraints;
+
+  void add(const Constraints& other) {
+    vertexConstraints.insert(other.vertexConstraints.begin(),
+                             other.vertexConstraints.end());
+    edgeConstraints.insert(other.edgeConstraints.begin(),
+                           other.edgeConstraints.end());
+  }
+
+  bool overlap(const Constraints& other) {
+    std::vector<VertexConstraint> vertexIntersection;
+    std::vector<EdgeConstraint> edgeIntersection;
+    std::set_intersection(vertexConstraints.begin(), vertexConstraints.end(),
+                          other.vertexConstraints.begin(),
+                          other.vertexConstraints.end(),
+                          std::back_inserter(vertexIntersection));
+    std::set_intersection(edgeConstraints.begin(), edgeConstraints.end(),
+                          other.edgeConstraints.begin(),
+                          other.edgeConstraints.end(),
+                          std::back_inserter(edgeIntersection));
+    return !vertexIntersection.empty() || !edgeIntersection.empty();
+  }
+
+  friend std::ostream& operator<<(std::ostream& os, const Constraints& c) {
+    for (const auto& vc : c.vertexConstraints) {
+      os << vc << std::endl;
+    }
+    for (const auto& ec : c.edgeConstraints) {
+      os << ec << std::endl;
+    }
+    return os;
+  }
+};
+
+struct Location {
+  Location(int x, int y) : x(x), y(y) {}
+  int x;
+  int y;
+
+  bool operator<(const Location& other) const {
+    return std::tie(x, y) < std::tie(other.x, other.y);
+  }
+
+  bool operator==(const Location& other) const {
+    return std::tie(x, y) == std::tie(other.x, other.y);
+  }
+
+  friend std::ostream& operator<<(std::ostream& os, const Location& c) {
+    return os << "(" << c.x << "," << c.y << ")";
+  }
+};
+
+namespace std {
+template <>
+struct hash<Location> {
+  size_t operator()(const Location& s) const {
+    size_t seed = 0;
+    boost::hash_combine(seed, s.x);
+    boost::hash_combine(seed, s.y);
+    return seed;
+  }
+};
+}  // namespace std
+
+
+struct Highway{
+  Highway(int fromx, int fromy, int tox, int toy) : fromx(fromx), fromy(fromy),
+                                                    tox(tox), toy(toy){}
+
+  int fromx;
+  int fromy;
+  int tox;
+  int toy;
+};
+
+// Highway heuristic helper functions
+struct HighwayHeuristic{
+  HighwayHeuristic(int dimx, int dimy) :
+      data(std::vector<std::vector<int> >(dimy, std::vector<int>(dimx, int(std::numeric_limits<int>::max() / 2)))){}
+
+  friend std::ostream& operator<<(std::ostream& os, const HighwayHeuristic& highway) {
+    for (size_t i = highway.data.size() - 1; i != size_t(-1); --i) {
+      for (size_t j = 0; j != highway.data[0].size(); ++j) {
+        os << highway.data[i][j] << " ";
+      }
+      os << std::endl;
+    }
+    return os;
+  }
+
+  HighwayHeuristic& operator=(const HighwayHeuristic& other) = default;
+  std::vector<std::vector<int> > data;
+};
+
+// Node struct for the priority queue
+struct Node{
+  Node(int x, int y) : x(x), y(y) {}
+  Node(int x, int y, int h) : x(x), y(y), h(h){}
+
+  bool operator<(const Node& other) const{
+    if (h != other.h){
+      return h > other.h;
+    }
+    return false;
+  }
+
+  int x;
+  int y;
+  int h = int(std::numeric_limits<int>::max()/2);
+
+  typedef typename boost::heap::d_ary_heap<Node, boost::heap::arity<2>,
+      boost::heap::mutable_<true>>::handle_type heapHandle;
+
+  heapHandle handle;
+
+};
+
+typedef typename boost::heap::d_ary_heap<Node, boost::heap::arity<2>,
+    boost::heap::mutable_<true>>
+    openList;
+
+
+class Environment {
+ public:
+  Environment(size_t dimx, size_t dimy, std::unordered_set<Location> obstacles,
+              std::vector<Location> goals, std::vector<Highway> highways)
+      : m_dimx(dimx),
+        m_dimy(dimy),
+        m_obstacles(std::move(obstacles)),
+        m_goals(std::move(goals)),
+        m_agentIdx(0),
+        m_constraints(nullptr),
+        m_lastGoalConstraint(-1),
+        m_highLevelExpanded(0),
+        m_lowLevelExpanded(0),
+        m_highways(std::move(highways)),
+        m_omega(2){
+    // computeHeuristic();
+    initHeuristic();
+    if(0){
+    HighwayHeuristic s(4,4);
+    s.data[0] = std::vector<int> {7,6,4,2};
+    s.data[1] = std::vector<int> {6,4,2,0};
+    s.data[2] = std::vector<int> {6,5,3,1};
+    s.data[3] = std::vector<int> {5,4,3,2};
+    m_highwayHeuristicTable.emplace_back(s);
+    std::cout << m_highwayHeuristicTable[0] << std::endl;
+    HighwayHeuristic d(4,4);
+    d.data[0] = std::vector<int> {4,2,0,1};
+    d.data[1] = std::vector<int> {6,4,2,2};
+    d.data[2] = std::vector<int> {8,6,4,3};
+    d.data[3] = std::vector<int> {7,6,5,4};
+    m_highwayHeuristicTable.emplace_back(d);
+    std::cout << m_highwayHeuristicTable[1] << std::endl;}
+  }
+
+  /// heuristic related functions
+  void initHeuristic(){
+    openList openlist;
+    for (size_t agentIdx = 0; agentIdx != m_goals.size(); ++agentIdx){
+      m_highwayHeuristicTable.emplace_back(m_dimx, m_dimy);
+      std::vector<std::vector<int>> poplist(m_dimy, std::vector<int>(m_dimx, 0));
+
+      auto handle = openlist.push(Node(m_goals[agentIdx].x, m_goals[agentIdx].y, 0));
+      (*handle).handle = handle;
+      int tentative;
+
+      while (!openlist.empty()){
+        // get top element
+        Node cur(openlist.top().x, openlist.top().y, openlist.top().h);
+
+        // pop it and mark it to poplist
+        // TODO: pop list is a bit trivial here since you can check if the heuristic table
+        // has ben changed or not but I'll keep it simple here
+        openlist.pop();
+        poplist[cur.y][cur.x] = 1;
+
+        // update the heuristic table
+        m_highwayHeuristicTable[agentIdx].data[cur.y][cur.x] = cur.h;
+
+        // add all the neighbor to the open
+        if (nodeValidEdge(cur.x, cur.y+1) && poplist[cur.y + 1][cur.x] == 0){
+          tentative = cur.h + getHighwayHeuristic(cur.x, cur.y, cur.x, cur.y + 1);
+          // std::cout << tentative << std::endl;
+          if ( tentative < m_highwayHeuristicTable[agentIdx].data[cur.y+1][cur.x]){
+            // if need a update and not in the openlist
+            if (m_highwayHeuristicTable[agentIdx].data[cur.y+1][cur.x] == int(std::numeric_limits<int>::max() / 2)){
+              // update heuristic table
+              m_highwayHeuristicTable[agentIdx].data[cur.y+1][cur.x] =  tentative;
+              // push the neighbor
+              handle = openlist.push(Node(cur.x, cur.y+1, tentative));
+              (*handle).handle = handle;
+            }
+            // else this neighbor is in the openlist but not yet poped, and need a update
+            else{
+              handle = getHandle(cur.x, cur.y+1, openlist);
+              (*handle).h = tentative;
+              openlist.increase(handle);
+            }
+          }
+        }
+
+        if (nodeValidEdge(cur.x-1, cur.y) && poplist[cur.y][cur.x-1] == 0){
+          tentative = cur.h + getHighwayHeuristic(cur.x, cur.y, cur.x-1, cur.y);
+          // std::cout << tentative << std::endl;
+          if ( tentative < m_highwayHeuristicTable[agentIdx].data[cur.y][cur.x-1]){
+            // if need a update and not in the openlist
+            if (m_highwayHeuristicTable[agentIdx].data[cur.y][cur.x-1] == int(std::numeric_limits<int>::max() / 2)){
+              // update heuristic table
+              m_highwayHeuristicTable[agentIdx].data[cur.y][cur.x-1] =  tentative;
+              // push the neighbor
+              handle = openlist.push(Node(cur.x-1, cur.y, tentative));
+              (*handle).handle = handle;
+            }
+              // else this neighbor is in the openlist but not yet poped, and need a update
+            else{
+              handle = getHandle(cur.x-1, cur.y, openlist);
+              (*handle).h = tentative;
+              openlist.increase(handle);
+            }
+          }
+        }
+
+        if (nodeValidEdge(cur.x, cur.y-1) && poplist[cur.y-1][cur.x] == 0){
+          tentative = cur.h + getHighwayHeuristic(cur.x, cur.y, cur.x, cur.y-1);
+          // std::cout << tentative << std::endl;
+          if ( tentative < m_highwayHeuristicTable[agentIdx].data[cur.y-1][cur.x]){
+            // if need a update and not in the openlist
+            if (m_highwayHeuristicTable[agentIdx].data[cur.y-1][cur.x] == int(std::numeric_limits<int>::max() / 2)){
+              // update heuristic table
+              m_highwayHeuristicTable[agentIdx].data[cur.y-1][cur.x] =  tentative;
+              // push the neighbor
+              handle = openlist.push(Node(cur.x, cur.y-1, tentative));
+              (*handle).handle = handle;
+            }
+              // else this neighbor is in the openlist but not yet poped, and need a update
+            else{
+              handle = getHandle(cur.x, cur.y-1, openlist);
+              (*handle).h = tentative;
+              openlist.increase(handle);
+            }
+          }
+        }
+
+        if (nodeValidEdge(cur.x+1, cur.y) && poplist[cur.y][cur.x+1] == 0){
+          tentative = cur.h + getHighwayHeuristic(cur.x, cur.y, cur.x+1, cur.y);
+          // std::cout << tentative << std::endl;
+          if ( tentative < m_highwayHeuristicTable[agentIdx].data[cur.y][cur.x+1]){
+            // if need a update and not in the openlist
+            if (m_highwayHeuristicTable[agentIdx].data[cur.y][cur.x+1] == int(std::numeric_limits<int>::max() / 2)){
+              // update heuristic table
+              m_highwayHeuristicTable[agentIdx].data[cur.y][cur.x+1] =  tentative;
+              // push the neighbor
+              handle = openlist.push(Node(cur.x+1, cur.y, tentative));
+              (*handle).handle = handle;
+            }
+              // else this neighbor is in the openlist but not yet poped, and need a update
+            else{
+              handle = getHandle(cur.x+1, cur.y, openlist);
+              (*handle).h = tentative;
+              openlist.increase(handle);
+            }
+          }
+        }
+      }
+
+      poplist.clear();
+    }
+
+    for (size_t i = 0; i != m_highwayHeuristicTable.size(); ++i){
+      std::cout << "The generated heuristic graph is:" << std::endl;
+      std::cout << m_highwayHeuristicTable[i];
+    }
+  }
+
+  // helper function to check if highway and get correct heuristic
+  int getHighwayHeuristic(int tox, int toy, int fromx, int fromy){
+    if (nodeIsHighway(fromx, fromy, tox, toy)){ return 1; }
+    else {return m_omega;}
+  }
+
+  // helper function to get the handle and update value
+  // TODO: seemed not using templated func correctly, will figure out later
+  Node::heapHandle getHandle(int x, int y, openList& openlist){
+    for (auto iter = openlist.begin(); iter != openlist.end(); ++iter){
+      if ((*iter).x == x && (*iter).y == y){
+        return (*iter).handle;
+      }
+    }
+    std::cout << "bugged getHandle func" << std::endl;
+    return openlist.top().handle;
+  }
+
+  // bellman check if a vertex is within bound and not an obstacle
+  bool nodeValidEdge(int x, int y){ return (x > -1) && (y > -1) && (x < m_dimy) && (y < m_dimx) &&
+        m_obstacles.find(Location(x, y)) == m_obstacles.end();};
+
+  // bellmanFord check if on the highway
+  // TODO: the search process can be improved by using different data structure
+  bool nodeIsHighway(int fromx, int fromy, int tox, int toy){
+    for (size_t i = 0; i != m_highways.size(); ++i){
+      if (m_highways[i].fromx == fromx && m_highways[i].fromy == fromy &&
+          m_highways[i].tox == tox && m_highways[i].toy == toy)
+      {return true;}
+    }
+    return false;
+  }
+
+
+  Environment(const Environment&) = delete;
+  Environment& operator=(const Environment&) = delete;
+
+  void setLowLevelContext(size_t agentIdx, const Constraints* constraints) {
+    assert(constraints);  // NOLINT
+    m_agentIdx = agentIdx;
+    m_constraints = constraints;
+    m_lastGoalConstraint = -1;
+    for (const auto& vc : constraints->vertexConstraints) {
+      if (vc.x == m_goals[m_agentIdx].x && vc.y == m_goals[m_agentIdx].y) {
+        m_lastGoalConstraint = std::max(m_lastGoalConstraint, vc.time);
+      }
+    }
+  }
+
+
+  int admissibleHeuristic(const State& s) {
+    // std::cout << "H: " <<  s << " " << m_heuristic[m_agentIdx][s.x + m_dimx *
+    // s.y] << std::endl;
+    // return m_heuristic[m_agentIdx][s.x + m_dimx * s.y];
+    // return std::abs(s.x - m_goals[m_agentIdx].x) +
+    //       std::abs(s.y - m_goals[m_agentIdx].y);
+    // return m_heuristic[m_agentIdx][s.x + 4 * s.y];
+    return m_highwayHeuristicTable[m_agentIdx].data[s.y][s.x];
+  }
+
+  bool isSolution(const State& s) {
+    return s.x == m_goals[m_agentIdx].x && s.y == m_goals[m_agentIdx].y &&
+           s.time > m_lastGoalConstraint;
+  }
+
+  void getNeighbors(const State& s,
+                    std::vector<Neighbor<State, Action, int> >& neighbors) {
+    // std::cout << "#VC " << constraints.vertexConstraints.size() << std::endl;
+    // for(const auto& vc : constraints.vertexConstraints) {
+    //   std::cout << "  " << vc.time << "," << vc.x << "," << vc.y <<
+    //   std::endl;
+    // }
+    neighbors.clear();
+    {
+      State n(s.time + 1, s.x, s.y);
+      if (stateValid(n) && transitionValid(s, n)) {
+        neighbors.emplace_back(
+            Neighbor<State, Action, int>(n, Action::Wait, 1));
+      }
+    }
+    {
+      State n(s.time + 1, s.x - 1, s.y);
+      if (stateValid(n) && transitionValid(s, n)) {
+        neighbors.emplace_back(
+            Neighbor<State, Action, int>(n, Action::Left, 1));
+      }
+    }
+    {
+      State n(s.time + 1, s.x + 1, s.y);
+      if (stateValid(n) && transitionValid(s, n)) {
+        neighbors.emplace_back(
+            Neighbor<State, Action, int>(n, Action::Right, 1));
+      }
+    }
+    {
+      State n(s.time + 1, s.x, s.y + 1);
+      if (stateValid(n) && transitionValid(s, n)) {
+        neighbors.emplace_back(Neighbor<State, Action, int>(n, Action::Up, 1));
+      }
+    }
+    {
+      State n(s.time + 1, s.x, s.y - 1);
+      if (stateValid(n) && transitionValid(s, n)) {
+        neighbors.emplace_back(
+            Neighbor<State, Action, int>(n, Action::Down, 1));
+      }
+    }
+  }
+
+  bool getFirstConflict(
+      const std::vector<PlanResult<State, Action, int> >& solution,
+      Conflict& result) {
+    int max_t = 0;
+    for (const auto& sol : solution) {
+      max_t = std::max<int>(max_t, sol.states.size() - 1);
+    }
+
+    for (int t = 0; t < max_t; ++t) {
+      // check drive-drive vertex collisions
+      for (size_t i = 0; i < solution.size(); ++i) {
+        State state1 = getState(i, solution, t);
+        for (size_t j = i + 1; j < solution.size(); ++j) {
+          State state2 = getState(j, solution, t);
+          if (state1.equalExceptTime(state2)) {
+            result.time = t;
+            result.agent1 = i;
+            result.agent2 = j;
+            result.type = Conflict::Vertex;
+            result.x1 = state1.x;
+            result.y1 = state1.y;
+            // std::cout << "VC " << t << "," << state1.x << "," << state1.y <<
+            // std::endl;
+            return true;
+          }
+        }
+      }
+      // drive-drive edge (swap)
+      for (size_t i = 0; i < solution.size(); ++i) {
+        State state1a = getState(i, solution, t);
+        State state1b = getState(i, solution, t + 1);
+        for (size_t j = i + 1; j < solution.size(); ++j) {
+          State state2a = getState(j, solution, t);
+          State state2b = getState(j, solution, t + 1);
+          if (state1a.equalExceptTime(state2b) &&
+              state1b.equalExceptTime(state2a)) {
+            result.time = t;
+            result.agent1 = i;
+            result.agent2 = j;
+            result.type = Conflict::Edge;
+            result.x1 = state1a.x;
+            result.y1 = state1a.y;
+            result.x2 = state1b.x;
+            result.y2 = state1b.y;
+            return true;
+          }
+        }
+      }
+    }
+
+    return false;
+  }
+
+  void createConstraintsFromConflict(
+      const Conflict& conflict, std::map<size_t, Constraints>& constraints) {
+    if (conflict.type == Conflict::Vertex) {
+      Constraints c1;
+      c1.vertexConstraints.emplace(
+          VertexConstraint(conflict.time, conflict.x1, conflict.y1));
+      constraints[conflict.agent1] = c1;
+      constraints[conflict.agent2] = c1;
+    } else if (conflict.type == Conflict::Edge) {
+      Constraints c1;
+      c1.edgeConstraints.emplace(EdgeConstraint(
+          conflict.time, conflict.x1, conflict.y1, conflict.x2, conflict.y2));
+      constraints[conflict.agent1] = c1;
+      Constraints c2;
+      c2.edgeConstraints.emplace(EdgeConstraint(
+          conflict.time, conflict.x2, conflict.y2, conflict.x1, conflict.y1));
+      constraints[conflict.agent2] = c2;
+    }
+  }
+
+  void onExpandHighLevelNode(int /*cost*/) { m_highLevelExpanded++; }
+
+  void onExpandLowLevelNode(const State& /*s*/, int /*fScore*/,
+                            int /*gScore*/) {
+    m_lowLevelExpanded++;
+  }
+
+  int highLevelExpanded() { return m_highLevelExpanded; }
+
+  int lowLevelExpanded() const { return m_lowLevelExpanded; }
+
+ private:
+  State getState(size_t agentIdx,
+                 const std::vector<PlanResult<State, Action, int> >& solution,
+                 size_t t) {
+    assert(agentIdx < solution.size());
+    if (t < solution[agentIdx].states.size()) {
+      return solution[agentIdx].states[t].first;
+    }
+    assert(!solution[agentIdx].states.empty());
+    return solution[agentIdx].states.back().first;
+  }
+
+  bool stateValid(const State& s) {
+    assert(m_constraints);
+    const auto& con = m_constraints->vertexConstraints;
+    return s.x >= 0 && s.x < m_dimx && s.y >= 0 && s.y < m_dimy &&
+           m_obstacles.find(Location(s.x, s.y)) == m_obstacles.end() &&
+           con.find(VertexConstraint(s.time, s.x, s.y)) == con.end();
+  }
+
+  bool transitionValid(const State& s1, const State& s2) {
+    assert(m_constraints);
+    const auto& con = m_constraints->edgeConstraints;
+    return con.find(EdgeConstraint(s1.time, s1.x, s1.y, s2.x, s2.y)) ==
+           con.end();
+  }
+
+
+#if 0
+  // We use another A* search for simplicity
+  // we compute the shortest path to each goal by using the fact that our getNeighbor function is
+  // symmetric and by not terminating the AStar search until the queue is empty
+  void computeHeuristic()
+  {
+    class HeuristicEnvironment
+    {
+    public:
+      HeuristicEnvironment(
+        size_t dimx,
+        size_t dimy,
+        const std::unordered_set<Location>& obstacles,
+        std::vector<int>* heuristic)
+        : m_dimx(dimx)
+        , m_dimy(dimy)
+        , m_obstacles(obstacles)
+        , m_heuristic(heuristic)
+      {
+      }
+
+      int admissibleHeuristic(
+        const Location& s)
+      {
+        return 0;
+      }
+
+      bool isSolution(
+        const Location& s)
+      {
+        return false;
+      }
+
+      void getNeighbors(
+        const Location& s,
+        std::vector<Neighbor<Location, Action, int> >& neighbors)
+      {
+        neighbors.clear();
+
+        {
+          Location n(s.x-1, s.y);
+          if (stateValid(n)) {
+            neighbors.emplace_back(Neighbor<Location, Action, int>(n, Action::Left, 1));
+          }
+        }
+        {
+          Location n(s.x+1, s.y);
+          if (stateValid(n)) {
+            neighbors.emplace_back(Neighbor<Location, Action, int>(n, Action::Right, 1));
+          }
+        }
+        {
+          Location n(s.x, s.y+1);
+          if (stateValid(n)) {
+            neighbors.emplace_back(Neighbor<Location, Action, int>(n, Action::Up, 1));
+          }
+        }
+        {
+          Location n(s.x, s.y-1);
+          if (stateValid(n)) {
+            neighbors.emplace_back(Neighbor<Location, Action, int>(n, Action::Down, 1));
+          }
+        }
+      }
+
+      void onExpandNode(
+        const Location& s,
+        int fScore,
+        int gScore)
+      {
+      }
+
+      void onDiscover(
+        const Location& s,
+        int fScore,
+        int gScore)
+      {
+        (*m_heuristic)[s.x + m_dimx * s.y] = gScore;
+      }
+
+    private:
+      bool stateValid(
+        const Location& s)
+      {
+        return    s.x >= 0
+               && s.x < m_dimx
+               && s.y >= 0
+               && s.y < m_dimy
+               && m_obstacles.find(Location(s.x, s.y)) == m_obstacles.end();
+      }
+
+    private:
+      int m_dimx;
+      int m_dimy;
+      const std::unordered_set<Location>& m_obstacles;
+      std::vector<int>* m_heuristic;
+
+    };
+
+    m_heuristic.resize(m_goals.size());
+
+    std::vector< Neighbor<State, Action, int> > neighbors;
+
+    for (size_t i = 0; i < m_goals.size(); ++i) {
+      m_heuristic[i].assign(m_dimx * m_dimy, std::numeric_limits<int>::max());
+      HeuristicEnvironment henv(m_dimx, m_dimy, m_obstacles, &m_heuristic[i]);
+      AStar<Location, Action, int, HeuristicEnvironment> astar(henv);
+      PlanResult<Location, Action, int> dummy;
+      astar.search(m_goals[i], dummy);
+      m_heuristic[i][m_goals[i].x + m_dimx * m_goals[i].y] = 0;
+    }
+  }
+#endif
+ private:
+  int m_dimx;
+  int m_dimy;
+  std::unordered_set<Location> m_obstacles;
+  std::vector<Location> m_goals;
+  std::vector< std::vector<int> > m_heuristic;
+  size_t m_agentIdx;
+  const Constraints* m_constraints;
+  int m_lastGoalConstraint;
+  int m_highLevelExpanded;
+  int m_lowLevelExpanded;
+  std::vector<HighwayHeuristic> m_highwayHeuristicTable;
+  std::vector<Highway> m_highways;
+  int m_omega;
+};
+
+
+int main(int argc, char* argv[]){
+  namespace po = boost::program_options;
+  // Declare the supported options.
+  po::options_description desc("Allowed options");
+  std::string inputFile;
+  std::string outputFile;
+  desc.add_options()("help", "produce help message")(
+      "input,i", po::value<std::string>(&inputFile)->required(),
+      "input file (YAML)")("output,o",
+                           po::value<std::string>(&outputFile)->required(),
+                           "output file (YAML)");
+
+  try {
+    po::variables_map vm;
+    po::store(po::parse_command_line(argc, argv, desc), vm);
+    po::notify(vm);
+
+    if (vm.count("help") != 0u) {
+      std::cout << desc << "\n";
+      return 0;
+    }
+  } catch (po::error& e) {
+    std::cerr << e.what() << std::endl << std::endl;
+    std::cerr << desc << std::endl;
+    return 1;
+  }
+
+  YAML::Node config = YAML::LoadFile(inputFile);
+
+  std::unordered_set<Location> obstacles;
+  std::vector<Location> goals;
+  std::vector<State> startStates;
+  std::vector<Highway> highways;
+
+  const auto& dim = config["map"]["dimensions"];
+  int dimx = dim[0].as<int>();
+  int dimy = dim[1].as<int>();
+
+  for (const auto& node : config["map"]["obstacles"]) {
+    obstacles.insert(Location(node[0].as<int>(), node[1].as<int>()));
+  }
+
+  for (const auto& node : config["agents"]) {
+    const auto& start = node["start"];
+    const auto& goal = node["goal"];
+    startStates.emplace_back(State(0, start[0].as<int>(), start[1].as<int>()));
+    // std::cout << "s: " << startStates.back() << std::endl;
+    goals.emplace_back(Location(goal[0].as<int>(), goal[1].as<int>()));
+  }
+
+  // read in the highways
+  for (const auto& node : config["highways"]){
+    highways.emplace_back(node[0].as<int>(), node[1].as<int>(),
+                                    node[2].as<int>(),node[3].as<int>());
+  }
+
+  Environment mapf(dimx, dimy, obstacles, goals, highways);
+  CBS<State, Action, int, Conflict, Constraints, Environment> cbs(mapf);
+  std::vector<PlanResult<State, Action, int> > solution;
+
+  Timer timer;
+  bool success = cbs.search(startStates, solution);
+  timer.stop();
+
+  if (success) {
+    std::cout << "Planning successful! " << std::endl;
+    int cost = 0;
+    int makespan = 0;
+    for (const auto& s : solution) {
+      cost += s.cost;
+      makespan = std::max<int>(makespan, s.cost);
+    }
+
+    std::ofstream out(outputFile);
+    out << "statistics:" << std::endl;
+    out << "  cost: " << cost << std::endl;
+    out << "  makespan: " << makespan << std::endl;
+    out << "  runtime: " << timer.elapsedSeconds() << std::endl;
+    out << "  highLevelExpanded: " << mapf.highLevelExpanded() << std::endl;
+    out << "  lowLevelExpanded: " << mapf.lowLevelExpanded() << std::endl;
+    out << "schedule:" << std::endl;
+    for (size_t a = 0; a < solution.size(); ++a) {
+      // std::cout << "Solution for: " << a << std::endl;
+      // for (size_t i = 0; i < solution[a].actions.size(); ++i) {
+      //   std::cout << solution[a].states[i].second << ": " <<
+      //   solution[a].states[i].first << "->" << solution[a].actions[i].first
+      //   << "(cost: " << solution[a].actions[i].second << ")" << std::endl;
+      // }
+      // std::cout << solution[a].states.back().second << ": " <<
+      // solution[a].states.back().first << std::endl;
+
+      out << "  agent" << a << ":" << std::endl;
+      for (const auto& state : solution[a].states) {
+        out << "    - x: " << state.first.x << std::endl
+            << "      y: " << state.first.y << std::endl
+            << "      t: " << state.second << std::endl;
+      }
+    }
+  } else {
+    std::cout << "Planning NOT successful!" << std::endl;
+  }
+
+}

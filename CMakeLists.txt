@@ -67,6 +67,8 @@ set(ALL_SOURCE_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/example/a_star_seq.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/example/hie_mapf_barebone.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/include/libMultiRobotPlanning/hie_mapf_barebone.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/highway_test.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/libMultiRobotPlanning/highway_test.hpp
 )
 
 add_custom_target(clang-format
@@ -222,6 +224,15 @@ add_executable(hie_mapf_barebone
         example/hie_mapf_barebone.cpp)
 
 target_link_libraries(hie_mapf_barebone
+        yaml-cpp
+        ${Boost_LIBRARIES}
+        )
+
+## highway_test
+add_executable(highway_test
+        example/highway_test.cpp)
+
+target_link_libraries(highway_test
         yaml-cpp
         ${Boost_LIBRARIES}
         )
